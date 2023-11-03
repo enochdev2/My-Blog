@@ -5,13 +5,8 @@ import Categories from "@/components/Categories";
 import PostWidget from "@/components/PostWidget";
 import { fetchBlog } from "@/Services";
 import Link from "next/link";
-import { log } from "console";
 
-// const blo = [
-//   {
-//     image:''
-//   }
-// ]
+
 
 const Blog = async () => {
   const blogs: any = await fetchBlog();
@@ -54,9 +49,6 @@ const Blog = async () => {
         </div>
       </div>
 
-      {/* {posts.map((post, index) => (
-            <PostCard key={index} post={post.node} />
-          ))} */}
     </main>
   );
 };
