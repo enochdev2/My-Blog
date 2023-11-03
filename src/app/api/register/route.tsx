@@ -1,0 +1,43 @@
+// import User from "@/models/User";
+import bcrypt from "bcrypt"
+import db from "@/lib/db";
+import User from "@/models/User";
+import connectDB from "@/lib/db";
+import { NextResponse } from "next/server";
+
+
+ export async function POST(req:any) {
+     
+     const {username, password, email} = await req.json();
+    //  await connectDB()
+    //  console.log(connectDB);
+     
+    await db.connect()
+    
+     const NewUser = await User.findOne({email: email})
+    
+    
+     if(NewUser){ 
+            return new NextResponse("User already Exist!", { status: 400});
+         }
+        console.log(NewUser);
+        
+         const hashPassword = await bcrypt.hash(password, 10);
+     
+     const UserInfo = new User({
+         username,
+         password: hashPassword,
+         email
+     })
+
+     try {
+    await UserInfo.save();
+    // console.log(user);
+    
+
+    return new NextResponse(JSON.stringify( UserInfo), {status: 201})
+} catch (error:any) {
+    return new Response(JSON.stringify(error.message))
+}
+    
+}
