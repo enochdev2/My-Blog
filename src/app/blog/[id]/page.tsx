@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { fetchSingleBlog } from "@/Services";
 import { useParams } from "next/navigation";
+import CommentsForm from "@/components/commentsForm";
 
 const BlogDetails =  async ({params}:any) => {
 
@@ -19,6 +20,7 @@ const BlogDetails =  async ({params}:any) => {
         </div>
       </div>
       <div>
+        <CommentsForm/>
         
       </div>
     </main>
