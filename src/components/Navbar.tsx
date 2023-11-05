@@ -26,10 +26,15 @@ const item : NavBarItem[] =  [
   {
     id: 3,
     name:" SERVICE",
-    link: "/"
+    link: "/service"
   },
   {
     id: 4,
+    name:" ABOUT",
+    link: "/about"
+  },
+  {
+    id: 5,
     name:" PROFILE",
     link: "/login"
   }

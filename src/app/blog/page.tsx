@@ -20,12 +20,12 @@ const Blog = async () => {
 
       <div className="container mx-auto px-10 mb-8">
         <FeaturedPosts />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-8 col-span-1">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 my-15">
+          <div className="lg:col-span-8 col-span-1 my-15">
             {blogs.map((blog: any, index: number) => (
-              <div key={index}>
-                <Link href={`blog/${blog._id}`}>
-                  <div className="relative w-[95%] h-36 lg:h-52 m-auto">
+              <div key={index} className="my-14 shadow-md py-5 px-4">
+                <Link href={`blog/${blog._id}`} className="">
+                  <div className="relative w-[95%] h-36 lg:h-52 m-auto ">
                     <Image
                       src={blog.imageUrl}
                       fill
@@ -35,7 +35,7 @@ const Blog = async () => {
                   </div>
                   <h2 className="font-bold my-2 text-xl">{blog.title}
                   {blog.id}</h2>
-                  <p>{blog.desc}</p>
+                  <p>{`${blog.desc}`.substring(1, 200)}</p>
                 </Link>
               </div>
             ))}

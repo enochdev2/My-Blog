@@ -37,7 +37,7 @@ export const footerLinks = [
     title: "Company",
     links: [
       { title: "Events", url: "/" },
-      { title: "Blog", url: "/" },
+      { title: "Blog", url: "/blog" },
       { title: "Podcast", url: "/" },
       { title: "Invite a friend", url: "/" },
     ],
