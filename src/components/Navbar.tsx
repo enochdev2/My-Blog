@@ -45,9 +45,9 @@ const item : NavBarItem[] =  [
     <div className='w-screen h-20 bg-gradient-to-tr to-blue-400 via-green-700 bg-blue-600 '>
       <div className="flex w-full px-4 m-auto justify-between items-center h-full gap-3  ">
         
-        <div className=' flex flex-3 gap-2'>
-          <Image src='/images.jpg' width={30} height={30} alt="logo" />
-          <h2 className='font-extrabold'><Link href='/'>TECH-NOCH</Link></h2>
+        <div className='relative flex flex-3 gap-2'>
+          <Image src='/insight.jfif' width={80} height={40} alt="logo" />
+          {/* <h2 className='font-extrabold absolute'><Link href='/'>TECH-NOCH</Link></h2> */}
         </div>
 
         <div className='flex shadow-sm border-4 border-white flex-2 ' >
@@ -55,7 +55,7 @@ const item : NavBarItem[] =  [
             <div className=' overflow-hidden w-full rounded-md'>
             <input type="text" name="search" id="search" className='px-2 w-full outline-none' placeholder='search' />
             </div>
-            <button title='submit' className='absolute  bg-lime-600 right-0 rounded-md bg-transparent px-2 z-2'>
+            <button type='submit' title='submit' className='absolute  bg-lime-600 right-0 rounded-md bg-transparent px-2 z-2'>
               <BiSearchAlt size={25}/>
               </button>
           </form>

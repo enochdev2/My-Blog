@@ -35,7 +35,9 @@ const Blog = async () => {
                   </div>
                   <h2 className="font-bold my-2 text-xl">{blog.title}
                   {blog.id}</h2>
-                  <p>{`${blog.desc}`.substring(1, 200)}</p>
+                  <p>{`${blog.desc}`.substring(1, 200)}
+                  <button type="button" className="py-1 px-3 ml-5 text-white bg-cyan-700 rounded-md hover:bg-teal-600 ">Read More</button>
+                  </p>
                 </Link>
               </div>
             ))}
