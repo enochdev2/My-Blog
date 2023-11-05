@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 import {format}  from "timeago.js"
 // import parse from 'html-react-parser';
