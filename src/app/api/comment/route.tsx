@@ -20,8 +20,8 @@ export async function POST(req:Request) {
     try {
         const body = req.json()
 
-        let comment = await Comment.create(body)
-        comment.save()
+        let comment = new Comment.(body)
+        await comment.save()
         return new Response(JSON.stringify(comment), {status: 201})
     } catch (error:any) {
         return new Response(JSON.stringify({message : error.message}), {status: 500})

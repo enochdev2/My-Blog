@@ -40,7 +40,7 @@ const handler =  NextAuth({
                 if(!user){
                     throw new Error("Invalid input")
                 }
-                const comparePassword = bcrypt.compare(pass, user.password)
+                const comparePassword = await bcrypt.compare(pass, user.password)
 
                 if(!comparePassword) {
                     throw new Error("incorrect Email or Password")
@@ -49,13 +49,16 @@ const handler =  NextAuth({
                     const {password, ...currentUser} = user._doc
     
                     const accessToken = jwtSignIn(currentUser)
-    
+                    console.log("🚀 ~ file: route.ts:52 ~ authorize ~ accessToken:", accessToken)
+                    
                     return {
                         ...currentUser,
                         accessToken
                     }
+                    
                 }
             },
+            
         }) 
     ],
     pages:{

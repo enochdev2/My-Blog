@@ -6,6 +6,9 @@ import { useParams } from "next/navigation";
 import CommentsForm from "@/components/commentsForm";
 import Comments from "@/components/comments";
 
+
+
+
 const BlogDetails =  async ({params}:any) => {
 
   const BlogDetail = await fetchSingleBlog(params.id)
@@ -13,6 +16,7 @@ const BlogDetails =  async ({params}:any) => {
     <main className="w-full  py-5">
       <div className="px-3 w-[90%] m-auto grid place-items-center gap-3">
         <div className="w-full">
+          <div>{BlogDetail?.title}</div>
           <div className="relative overflow-hidden w-[90%] h-[200px] bg-red-800 m-auto">
         <Image src={BlogDetail.imageUrl} fill alt="blog" className="" />
           </div>

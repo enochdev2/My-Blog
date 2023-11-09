@@ -6,7 +6,9 @@ import  * as React from 'react';
 
 
 const Provider = ({children, session}:{children: React.ReactNode,session: Session  }) => (
-<SessionProvider session={session}>
+<SessionProvider 
+session={session}
+>
     {children}
 </SessionProvider>
 )
