@@ -6,7 +6,9 @@ import { AiOutlineFileImage } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-
+interface Image {
+  setImageUrl: (value: React.SetStateAction<string>) => void
+}
 
 const Create_post = () => {
   const CLOUD_NAME = 'dg9ikhw52'
@@ -44,7 +46,7 @@ console.log(title);
 
   try {
     const imageUrl = await uploadImage()
-    console.log(imageUrls);
+    console.log(imageUrl);
     
     const res = await fetch(`https://localhost:3000/api/blog`, {
       headers: {
@@ -135,7 +137,7 @@ const uploadImage = async () => {
             </select>
           </div>
           <div className='m-auto w-10/12'>
-            <button title='submit' className='w-full bg-gradient-to-r from-emerald-700 to-indigo-400 text-2xl font-semibold rounded-lg py-2 '>
+            <button type="submit" title='submit' className='w-full bg-gradient-to-r from-emerald-700 to-indigo-400 text-2xl font-semibold hover:bg-gradient-to-t  rounded-lg py-2 '>
               Submit
             </button>
           </div>

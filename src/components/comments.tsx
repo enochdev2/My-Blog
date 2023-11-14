@@ -3,10 +3,26 @@ import React, { useEffect, useState } from 'react';
 import {format}  from "timeago.js"
 // import parse from 'html-react-parser';
 
+interface Commentss {
+  _id: string,
+  blogId: string,
+  userId: string,
+  text: string,
+  createdAt?: Date,
+  updatedAt?: Date,
+}
+const Comments = ({id}:any) => {
+  const [comments, setComments] = useState<Commentss[]>([]);
 
-const Comments = () => {
-  const [comments, setComments] = useState([]);
-
+ useEffect(() => {
+ const fetchComment = async () => {
+  const res = await fetch(`http://localhost:3000/api/comment/${id}`)
+  const data = await res.json();
+  console.log("data:", data)
+  setComments(data)
+ }
+ fetchComment()
+ }, [])
  
 
   return (
@@ -21,11 +37,11 @@ const Comments = () => {
             {comments.map((comment, index) => (
               <div key={index} className="border-b border-gray-100 mb-4 pb-4">
                 <p className="mb-4">
-                  <span className="font-semibold">{comment}</span>
+                  <span className="font-semibold">{comment.text}</span>
                   {' '}
                   on
                   {' '}
-                  {format(comment)}
+                  {/* {format(comment.createdAt)} */}
                 </p>
                 <p className="whitespace-pre-line text-gray-600 w-full"></p>
               </div>

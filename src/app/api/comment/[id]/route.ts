@@ -2,15 +2,17 @@ import db from "@/lib/db";
 import { jwtVerify } from "@/lib/jwt";
 import Comment from "@/models/comments";
 
-export async function GET(req:Request, {id}:any){
+export async function GET(req:Request, {params}:any){
     await db.connect()
-
+    const {id} = params
+    console.log(id);
     // blog id !!
     
 
     try {
-        const comments = await Comment.find({blogId: id}).populate('authorId')
-
+        const comments = await Comment.find({blogId:id})
+                 console.log(comments);
+                 
         return new Response(JSON.stringify(comments), {status: 200})
     } catch (error) {
         return new Response(JSON.stringify(null), {status: 500})

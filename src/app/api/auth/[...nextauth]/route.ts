@@ -48,8 +48,8 @@ const handler =  NextAuth({
 
                     const {password, ...currentUser} = user._doc
     
-                    const accessToken = jwtSignIn(currentUser)
-                    console.log("🚀 ~ file: route.ts:52 ~ authorize ~ accessToken:", accessToken)
+                    const accessToken = await jwtSignIn(currentUser)
+                    console.log("accessToken:", accessToken)
                     
                     return {
                         ...currentUser,
@@ -81,7 +81,11 @@ const handler =  NextAuth({
 
             return session
         }
-    }
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: "jwt",
+    },
 })
 
 export {handler as GET, handler as POST}

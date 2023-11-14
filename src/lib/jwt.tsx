@@ -6,9 +6,9 @@ export const jwtSignIn = async (id:string) => {
   return token;
 };
 
-export const jwtVerify = (token: any) => {
+export const jwtVerify = (token: string) => {
   try {
-    const secret:any = process.env.SECRET_Key;
+    const secret = process.env.JWT_SECRET as string;
     const decoded = jwt.verify(token, secret);
     return decoded;
   } catch (error: any) {

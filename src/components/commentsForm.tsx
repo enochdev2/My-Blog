@@ -3,19 +3,30 @@ import { useSession } from 'next-auth/react';
 import React, { useState, useEffect, ChangeEvent } from 'react';
 
 
+
+
 // interface Data {
 //     commentText: string,
 // }
-const CommentsForm = () => {
+const CommentsForm = ({idx}:any) => {
+  const {data:session, status} = useSession()
   const [error, setError] = useState(false);
   // const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [commentText, setCommentText] = useState<String>('');
-const {data: session, status} = useSession();
 
-
-
+  
   const handlePostSubmission = async () => {
+   const blogId = idx;
+    console.log(blogId);
+ 
+
+
+    const body = {
+      userId: session?.user?._id,
+      blogId: idx,
+      text: commentText
+    }
    const res = await fetch('http://localhost:3000/api/comment', {
     method: 'Post',
     headers:{
@@ -23,7 +34,7 @@ const {data: session, status} = useSession();
       'Authorization': `Bearer ${session?.user?.accessToken}`
 
     },
-    body: JSON.stringify({text: commentText})
+    body: JSON.stringify(body)
    })
   };
 
@@ -32,7 +43,7 @@ const {data: session, status} = useSession();
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">Leave a Reply</h3>
       <div className="grid grid-cols-1 gap-4 mb-4">
         <textarea 
-        onChange={(e) => e.target.value} 
+        onChange={(e) => setCommentText(e.target.value)} 
         className="p-4 outline-none w-full rounded-lg h-40 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" name="comment" placeholder="Comment" />
       </div>
     
