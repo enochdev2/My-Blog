@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Link from "next/link"
 import { NavBarItem } from '../../interface'
-import {FaFacebook, FaBars, FaLinkedin, FaTwitter} from "react-icons/fa"
+import { FaBars} from "react-icons/fa"
 import Image from 'next/image'
 import ThemeToggler from './theme'
 
@@ -42,7 +42,7 @@ const item : NavBarItem[] =  [
 
 
   return (
-    <div className='w-screen h-20 bg-gradient-to-tr to-blue-400 via-green-700 bg-blue-600 '>
+    <div className='w-screen h-20  to-blue-400 via-green-700  '>
       <div className="flex w-full px-4 m-auto justify-between items-center h-full gap-3  ">
         
         <div className='relative flex flex-3 gap-2'>
@@ -71,15 +71,6 @@ const item : NavBarItem[] =  [
         </div>
 
         <div className="md:flex flex-1 hidden  justify-end gap-3">
-          <div>
-            <FaFacebook size={20}  />
-          </div>
-          <div>
-            <FaTwitter size={20} />
-          </div>
-          <div>
-            <FaLinkedin size={20}  />
-          </div>
         <div className="bg-red">
                   <ThemeToggler />
             </div>
