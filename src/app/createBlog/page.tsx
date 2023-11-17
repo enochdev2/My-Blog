@@ -1,5 +1,6 @@
 'use client'
 
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React,{FormEvent, useState} from 'react'
 import { AiOutlineFileImage } from 'react-icons/ai'
@@ -16,23 +17,23 @@ const Create_post = () => {
 
 const [title, setTitle] = useState('')
 const [desc, setDesc] = useState('')
-const [imageUrls, setImageUrl] = useState('')
+const [imageUrls, setImageUrl] = useState({})
 const [categories, setCategories] = useState('')
 
 
-// const { data: session, status } = useSession()
+const { data: session, status } = useSession()
 const router = useRouter()
 
 
-// if (status === 'loading') {
-//     return <p>Loading...</p>
-// }
+if (status === 'loading') {
+    return <p>Loading...</p>
+}
 
-// if (status === 'unauthenticated') {
-//     return <p className={classes.accessDenied}>
-//         Access Denied
-//     </p>
-// }
+if (status === 'unauthenticated') {
+    return <p className=''>
+        Access Denied
+    </p>
+}
 
 
 const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
@@ -48,20 +49,20 @@ console.log(title);
     const imageUrl = await uploadImage()
     console.log(imageUrl);
     
-    const res = await fetch(`https://localhost:3000/api/blog`, {
+    const res = await fetch(`http://localhost:3000/api/blog`, {
+      method: 'POST',
       headers: {
          'Content-Type': 'application/json',
-        //  'Authorization': `Bearer ${session?.user?.accessToken}` 
+         'Authorization': `Bearer ${session?.user?.accessToken}` 
       },
-      method: 'POST',
       body: JSON.stringify({title,desc,categories,imageUrl,
+        userId: session?.user?._id
       })
-      // userId: session?.user?._id
     })
 
-    if(!res.ok){
-      throw new Error("Error occured")
-    }
+    // if(!res.ok){
+    //   throw new Error("Error occured")
+    // }
 
     const blog = await res.json()
 
@@ -118,8 +119,12 @@ const uploadImage = async () => {
             <label htmlFor="image" className='font-bold gas-6 flex flex-row text-lg border-2 bg-slate-400 rounded-md px2 py-3'>
             <AiOutlineFileImage size='25' /> <p> Upload Image</p>
             </label>
-            <input type="file" name="image" id="image" value={imageUrls} className={!imageUrls ?'hidden': "block"}
-            onChange={(e)=> setImageUrl(e.target.value)}
+            <input type="file"
+             name="image" 
+             id="image"  
+             className={!imageUrls ?'hidden': "block"}
+            onChange={(e)=> setImageUrl(e.target.files[0])}
+            accept='image/*'
             />
             
           </div>
@@ -129,11 +134,11 @@ const uploadImage = async () => {
             className='w-lg'
             onChange={(e)=> setCategories(e.target.value)}>
               <option value="all">All</option>
-              <option value="finance">Finance</option>
-              <option value="leadership">Leadership</option>
-              <option value="family">Family</option>
-              <option value="business">Business</option>
-              <option value="lifestyle">Lifestyle</option>
+              <option value="Finance">Finance</option>
+              <option value="Leadership">Leadership</option>
+              <option value="Family">Family</option>
+              <option value="Business">Business</option>
+              <option value="Lifestyle">Lifestyle</option>
             </select>
           </div>
           <div className='m-auto w-10/12'>

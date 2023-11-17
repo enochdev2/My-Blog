@@ -42,40 +42,40 @@ const item : NavBarItem[] =  [
 
 
   return (
-    <div className='w-screen h-20  to-blue-400 via-green-700  '>
+    <div className='w-screen h-20 bg-gradient-to-l from-zinc-500 text-stone-600 '>
       <div className="flex w-full px-4 m-auto justify-between items-center h-full gap-3  ">
         
-        <div className='relative flex flex-3 gap-2'>
+        <div className='relative flex '>
           <Image src='/insight.jfif' width={80} height={40} alt="logo" />
           {/* <h2 className='font-extrabold absolute'><Link href='/'>TECH-NOCH</Link></h2> */}
         </div>
 
-        <div className='flex shadow-sm border-4 border-white flex-2 ' >
+        <div className='flex shadow-sm m-2 w-7    border border-solid border-red-800 overflow-hidden' >
           <form className=" w-full flex relative">
             <div className=' overflow-hidden w-full rounded-md'>
             <input type="text" name="search" id="search" className='px-2 w-full outline-none' placeholder='search' />
             </div>
-            <button type='submit' title='submit' className='absolute  bg-lime-600 right-0 rounded-md bg-transparent px-2 z-2'>
+            <button type='submit' title='submit' className='absolute  right-0 rounded-md bg-transparent px-2 z-2'>
               <BiSearchAlt size={25}/>
               </button>
           </form>
         </div>
 
-        <div className='md:flex flex-1 justify-between items-center hidden  gap-5'>  
+        <div className='md:flex justify-between items-center hidden  gap-5 border border-solid border-red-800'>  
             {item.map((items:NavBarItem, id:number)=>(
 
             <Link href={items.link} key={id} className="py-2 px-4 bg-slate-400 rounded-xl hover:bg-white">
               {items.name}
             </Link>
             ))}
-        </div>
-
         <div className="md:flex flex-1 hidden  justify-end gap-3">
         <div className="bg-red">
                   <ThemeToggler />
             </div>
         </div>
-        <FaBars size={30}  className=" md:hidden cursor-pointer" />
+        </div>
+
+        <FaBars onClick={()=> setNavMenu(!navMenu)} size={30}  className=" md:hidden cursor-pointer" />
       </div>
     </div>
   )

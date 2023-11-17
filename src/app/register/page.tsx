@@ -36,10 +36,10 @@ const Register = () => {
       console.log(await res.json());
       if (res.ok) {
         toast.success("Successfully registered the user");
-        // setTimeout(() => {
-        //     signIn()
-        // }, 1500)
-        // return
+        setTimeout(() => {
+            signIn()
+        }, 1500)
+        return
       } else {
         toast.error("Error occured while registering");
         return;

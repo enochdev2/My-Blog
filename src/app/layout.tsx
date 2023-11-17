@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";import NextThemeProvider from "../Provider/ThemeProvider";
 import Footer from "@/components/Footer";
 import Provider from "@/Provider";
+import SideBar from "@/components/SideBar";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,14 +21,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="dark:bg-transparent ">
-        <NextThemeProvider>
+      <body className=" w-screen dark:bg-transparent ">
+        {/* <NextThemeProvider> */}
           <Provider>
         <Navbar />
+            <SideBar/>
         {children}
         <Footer />
           </Provider>
-        </NextThemeProvider>
+        {/* </NextThemeProvider> */}
       </body>
     </html>
   );

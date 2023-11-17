@@ -10,21 +10,21 @@ const Footer = () => {
       <div className="flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16">
         <div className="flex flex-col justify-start items-start gap-6">
           <Image
-            src="/logo.svg"
+             src='/insight.jfif'
             alt="logo"
             width={118}
             height={118}
             className="object-contain"
           />
-          <div className="md:flex flex-1 hidden  justify-end gap-3">
+          <div className="flex flex-1  justify-end gap-3">
             <div>
-              <FaFacebook size={20} />
+              <FaFacebook size={30} className='text-blue-800' />
             </div>
             <div>
-              <FaTwitter size={20} />
+              <FaTwitter size={30} className='text-blue-800'/>
             </div>
             <div>
-              <FaLinkedin size={20} />
+              <FaLinkedin size={30} className='bg-blue-400 text-blue-900'/>
             </div>
           </div>
           <p className="text-xl text-grey-700">
