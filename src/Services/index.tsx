@@ -4,7 +4,7 @@ export const fetchBlog = async () => {
   return data;
 }
 export const fetchSingleBlog = async (id:string | number) => {
-  const res = await fetch(`http://localhost:3000/api/blog/${id}`) 
+  const res = await fetch(`http://localhost:3000/api/blog/${id}`, { cache: 'no-store' }) 
   const data = res.json();
   return data;
 }

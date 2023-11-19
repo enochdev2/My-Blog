@@ -1,5 +1,6 @@
 'use client'
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React, { useState, useEffect, ChangeEvent } from 'react';
 
 
@@ -14,6 +15,7 @@ const CommentsForm = ({idx}:any) => {
   // const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [commentText, setCommentText] = useState<String>('');
+  const router = useRouter()
 
   
   const handlePostSubmission = async () => {
@@ -36,6 +38,8 @@ const CommentsForm = ({idx}:any) => {
     },
     body: JSON.stringify(body)
    })
+  //  router.refresh();
+   setCommentText('');
   };
 
   return (

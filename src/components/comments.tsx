@@ -2,13 +2,16 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { BsTrash } from "react-icons/bs";
-import { format } from "timeago.js";
+import {useSession} from 'next-auth/react'
+import { useRouter } from "next/navigation";
+
+
 // import parse from 'html-react-parser';
 
 interface Commentss {
   _id: string;
   blogId: string;
-  userId: {username: string}
+  userId: {username: string, _id:string}
   text: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -16,18 +19,40 @@ interface Commentss {
 }
 const Comments = ({ id }: any) => {
   const [comments, setComments] = useState<Commentss[]>([]);
+  const {data: session} = useSession()
+  const token = session?.user?.accessToken
 
-  const handleDeleteComment = () => {};
+
 
   useEffect(() => {
     const fetchComment = async () => {
       const res = await fetch(`http://localhost:3000/api/comment/${id}`);
       const data = await res.json();
-      console.log("data:", data);
       setComments(data);
+       
     };
     fetchComment();
   }, []);
+
+
+  const handleDeleteComment = async(id:string) => {
+    try {
+      await fetch(`http://localhost:3000/api/comment/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        method: "DELETE"
+      })
+
+      setComments(prev => {
+        return [...prev].filter((c) => c?._id !== id)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
 
   return (
     <>
@@ -44,9 +69,11 @@ const Comments = ({ id }: any) => {
               <p className="mb-4">
                 <span className="font-semibold">{comment.text}</span>
               </p>
-              <div>
-                <BsTrash className="pointer" onClick={handleDeleteComment} />
-              </div>
+              <div className=''>
+           {session?.user?._id === comment?.userId && (
+             <BsTrash className='cursor-pointer'  onClick={()=> handleDeleteComment(comment._id)} />
+           )}
+        </div>
               </div>
             </div>
           ))}

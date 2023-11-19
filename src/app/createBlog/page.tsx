@@ -26,7 +26,7 @@ const router = useRouter()
 
 
 if (status === 'loading') {
-    return <p>Loading...</p>
+    return <div className='w-screen h-screen flex justify-center items-center text-center'> <p className='text-2xl font-semibold text-[000]'>Loading...</p> </div>
 }
 
 if (status === 'unauthenticated') {
