@@ -36,7 +36,7 @@ const item : NavBarItem[] =  [
   {
     id: 5,
     name:" PROFILE",
-    link: "/login"
+    link: "/profile"
   }
 ]
 

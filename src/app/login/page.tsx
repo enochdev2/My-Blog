@@ -47,12 +47,12 @@ const LogIn = () => {
       <h3 className='font-bold text-2xl'>Login</h3>
       <div className='my-2 flex flex-col text-2'>
       <label htmlFor="email" className="my-2 text-lg">Email</label>
-        <input type="text" name='email' id="email" className='h-9' onChange={(e) => setEmail(e.target.value)} />
+        <input type="text" name='email' id="email" className='border p-3 rounded-lg' onChange={(e) => setEmail(e.target.value)} />
       </div>
 
       <div className='my-2 flex flex-col' >
         <label htmlFor="password" className="my-2 text-lg">Password</label>
-        <input type={`password`} name='password' id="password" className='h-9' onChange={(e) => setPassword(e.target.value)}  />
+        <input type={`password`} name='password' id="password" className='border p-3 rounded-lg' onChange={(e) => setPassword(e.target.value)}  />
       </div>
       <button type="submit" className=" text-white bg-blue-900 w-full m-auto rounded-md py-1 px-2 " >Login</button>
       <button  className=" my-2 text-white bg-blue-900 w-full m-auto rounded-md py-1 px-2 " >Google</button>
