@@ -9,6 +9,11 @@ export interface Option {
     value : string;
 }
 
+export interface NavBarItem{
+    id: number,
+    name: string,
+    link: string,
+}
 export interface FormControlItem{
     id: string;
     label: string;

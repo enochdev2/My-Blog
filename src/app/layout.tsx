@@ -22,14 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className=" w-screen dark:bg-transparent ">
-        {/* <NextThemeProvider> */}
           <Provider>
+        <NextThemeProvider>
         <Navbar />
             <SideBar/>
         {children}
         <Footer />
+        </NextThemeProvider>
           </Provider>
-        {/* </NextThemeProvider> */}
       </body>
     </html>
   );

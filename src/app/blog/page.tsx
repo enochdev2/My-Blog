@@ -17,7 +17,7 @@ const Blog = async () => {
     <main className="w-full p-4">
       {/* <div className="px-3 w-[70%]  my-4 grid  md:grid-cols-2 place-items-center grid-cols-1 gap-4"></div>
       <div></div> */}
-     <div className="p-3 m-auto border-b border-b-lime-700 text-xl text-center"> FeaturedPosts </div>
+     <div className="p-3 mt-12  m-auto border-b border-b-lime-700 text-xl text-center"> FeaturedPosts </div>
       <div className="container mx-auto px-10 mt-4 mb-8">
         <FeaturedPosts />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 my-15">
@@ -44,7 +44,7 @@ const Blog = async () => {
             ))}
           </div>
           <div className="lg:col-span-4 col-span-1">
-            <div className="lg:sticky relative top-8">
+            <div className="md:hidden lg:block relative top-8">
               <PostWidget />
               <Categories />
             </div>

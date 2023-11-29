@@ -9,7 +9,7 @@ export default function ThemeToggler() {
   return (
     <button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
         {
-            theme ==='dark' ? <BsSunFill size={30} /> : <MdDarkMode size={30}/>
+            theme ==='dark' ? <BsSunFill size={25} /> : <MdDarkMode size={25}/>
         }
     </button>
   );

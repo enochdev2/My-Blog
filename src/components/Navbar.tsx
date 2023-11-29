@@ -1,84 +1,122 @@
-"use client"
-import React, { useState } from 'react'
-import Link from "next/link"
-import { NavBarItem } from '../../interface'
-import { FaBars} from "react-icons/fa"
-import Image from 'next/image'
-import ThemeToggler from './theme'
+"use client";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { NavBarItem } from "../utils/types";
+import { FaBars, FaSearch } from "react-icons/fa";
+import Image from "next/image";
+import ThemeToggler from "./theme";
 
-import { BiSearchAlt } from 'react-icons/bi'
-
+import { BiSearchAlt } from "react-icons/bi";
 
 const Navbar = () => {
-  const [navMenu, setNavMenu] = useState<boolean>(false)
+  const [navMenu, setNavMenu] = useState<boolean>(false);
+  const [sticky, setSticky] = useState<boolean>(false);
 
-const item : NavBarItem[] =  [
-  {
-    id: 1,
-    name: "HOME",
-    link: "/"
-  },
-  {
-    id: 2,
-    name: "BLOG",
-    link: "/blog"
-  },
-  {
-    id: 3,
-    name:" SERVICE",
-    link: "/service"
-  },
-  {
-    id: 4,
-    name:" ABOUT",
-    link: "/about"
-  },
-  {
-    id: 5,
-    name:" PROFILE",
-    link: "/profile"
-  }
-]
+  const item: NavBarItem[] = [
+    {
+      id: 1,
+      name: "HOME",
+      link: "/",
+    },
+    {
+      id: 2,
+      name: "BLOG",
+      link: "/blog",
+    },
+    {
+      id: 3,
+      name: " SERVICE",
+      link: "/service",
+    },
+    {
+      id: 4,
+      name: " ABOUT",
+      link: "/about",
+    },
+    {
+      id: 5,
+      name: " PROFILE",
+      link: "/profile",
+    },
+  ];
+
+
+  function handleStickyNavbar() {
+    if (window.scrollY >= 80) setSticky(true);
+    else setSticky(false);
+
+    }
+
+    useEffect(() => {
+      window.addEventListener("scroll", handleStickyNavbar);
+    });
+
 
 
   return (
-    <div className='w-screen h-20 bg-gradient-to-l from-zinc-500 text-stone-600 '>
-      <div className="flex w-full px-4 m-auto justify-between items-center h-full gap-3  ">
-        
-        <div className='relative flex '>
-          <Image src='/insight.jfif' width={80} height={40} alt="logo" />
-          {/* <h2 className='font-extrabold absolute'><Link href='/'>TECH-NOCH</Link></h2> */}
-        </div>
-
-        <div className='flex shadow-sm m-2 w-7    border border-solid border-red-800 overflow-hidden' >
-          <form className=" w-full flex relative">
-            <div className=' overflow-hidden w-full rounded-md'>
-            <input type="text" name="search" id="search" className='px-2 w-full outline-none' placeholder='search' />
-            </div>
-            <button type='submit' title='submit' className='absolute  right-0 rounded-md bg-transparent px-2 z-2'>
-              <BiSearchAlt size={25}/>
-              </button>
-          </form>
-        </div>
-
-        <div className='md:flex justify-between items-center hidden  gap-5 border border-solid border-red-800'>  
-            {item.map((items:NavBarItem, id:number)=>(
-
-            <Link href={items.link} key={id} className="py-2 px-4 bg-slate-400 rounded-xl hover:bg-white">
-              {items.name}
-            </Link>
-            ))}
-        <div className="md:flex flex-1 hidden  justify-end gap-3">
-        <div className="bg-red">
-                  <ThemeToggler />
-            </div>
-        </div>
-        </div>
-
-        <FaBars onClick={()=> setNavMenu(!navMenu)} size={30}  className=" md:hidden cursor-pointer" />
+    <header 
+    className={`top-0 left-0 z-40 flex w-full gap-3 items-center bg-[#7E909A] mb-10
+    ${
+      sticky
+        ? "!fixed !z-[9999] !bg-[#7E909A] !bg-opacity-90 shadow-sticky backdrop:blur-sm !transition dark:!bg-primary dark:!bg-opacity-20"
+        : "absolute"
+    }
+    `}
+    // className="bg-slate-200 shadow-md"
+    >
+      <div className="flex justify-between gap-5 items-center w-full mx-auto p-3 ">
+        <Link href="/">
+          <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
+            <span className="text-slate-500">My-</span>
+            <span className="text-slate-700">Insight</span>
+          </h1>
+        </Link>
+        <form
+          // onSubmit={handleSubmit}
+          className="bg-slate-100 p-3 rounded-lg flex items-center"
+        >
+          <input
+            type="text"
+            placeholder="Search..."
+            className="bg-transparent focus:outline-none w-24 sm:w-64"
+            // value={searchTerm}
+            // onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button title="submit" type="submit">
+            <FaSearch className="text-slate-600" />
+          </button>
+        </form>
+        <ul className="flex gap-4 mx-2">         
+            
+              {item.map((items: NavBarItem, id: number) => (
+                <Link 
+                  href={items.link}
+                  key={id}
+                  className="hidden sm:inline text-slate-700  rounded-lg bg-[#A5D8DD] px-2 py-1"
+                >
+                  {items.name}
+                </Link>
+              ))}
+         
+          
+          <Link href="/profile">
+            {/* {currentUser ? (
+              <img
+                className='rounded-full h-7 w-7 object-cover'
+                src={currentUser.avatar}
+                alt='profile'
+              />
+            ) : (
+              <li className=' text-slate-700 hover:underline'> Sign in</li>
+            )} */}
+          </Link>
+          <li className="hidden sm:inline text-slate-700 hover:underline">
+              <ThemeToggler />
+            </li>
+        </ul>
       </div>
-    </div>
-  )
-}
+    </header>
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -26,9 +26,15 @@ const Comments = ({ id }: any) => {
 
   useEffect(() => {
     const fetchComment = async () => {
-      const res = await fetch(`http://localhost:3000/api/comment/${id}`);
-      const data = await res.json();
-      setComments(data);
+      try {
+        
+        const res = await fetch(`http://localhost:3000/api/comment/${id}`);
+        const data = await res.json();
+        setComments(data);
+      } catch (error) {
+        console.log(error);
+        
+      }
        
     };
     fetchComment();
@@ -56,7 +62,7 @@ const Comments = ({ id }: any) => {
 
   return (
     <>
-      {comments.length > 0 && (
+      {comments?.length > 0 && (
         <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
           <h3 className="text-xl mb-8 font-semibold border-b pb-4">
             {comments.length} Comments
@@ -70,7 +76,7 @@ const Comments = ({ id }: any) => {
                 <span className="font-semibold">{comment.text}</span>
               </p>
               <div className=''>
-           {session?.user?._id === comment?.userId && (
+           {session?.user === comment?.userId && (
              <BsTrash className='cursor-pointer'  onClick={()=> handleDeleteComment(comment._id)} />
            )}
         </div>

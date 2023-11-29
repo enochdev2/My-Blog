@@ -1,5 +1,6 @@
 import db from "@/lib/db";
 import { jwtVerify } from "@/lib/jwt";
+import User from "@/models/User";
 import Comment from "@/models/comments";
 import { headers } from 'next/headers'
 
@@ -13,9 +14,14 @@ export async function GET(req:Request, {params}:any){
 
     try {
         const comments = await Comment.find({blogId:id})
-                 console.log(comments);
+        // const commentUser = await User.findone({id:comments.userId }) 
+        // console.log(commentUser);
+        
+
+        // const {username, ...others} = commentUser._doc
+                //  console.log(username);
                  
-        return new Response(JSON.stringify(comments), {status: 200})
+        return new Response(JSON.stringify({comments}), {status: 200})
     } catch (error) {
         return new Response(JSON.stringify(null), {status: 500})
     }
