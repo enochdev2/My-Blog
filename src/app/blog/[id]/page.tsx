@@ -4,6 +4,8 @@ import CommentsForm from "@/components/commentsForm";
 import BlogDetailsClient from "@/components/BlogDetailsClient";
 import Comments from "@/components/comments";
 import moment from "moment";
+import RelatedPost from "@/components/RelatedPost";
+
 
 import { getServerSession } from "next-auth/next";
 
@@ -42,9 +44,19 @@ const BlogDetails = async ({ params }: any) => {
         </div>
         
           
-          <p className="py-3 px-5 text-lg text-justify">{BlogDetail?.desc}</p>
+          <p className="py-3 px-5 text-lg text-justify">{BlogDetail?.desc.slice(0,370)}</p>
+          <div className="relative overflow-hidden w-[70%] h-[150px] bg-red-800 m-auto">
+            <Image src={BlogDetail.imageUrl} fill alt="blog" className="" />
+          </div>
+          <p className="py-3 px-5 text-lg text-justify">{BlogDetail?.desc.slice(370,700)}</p>
       </div>
       </div>
+      <div className="lg:col-span-4 col-span-1">
+            <div className="md:hidden lg:block relative top-8">
+              <RelatedPost />
+            </div>
+          </div>
+
       <div>
         <CommentsForm idx={idx} />
         <Comments id={params.id} />

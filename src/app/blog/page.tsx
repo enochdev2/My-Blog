@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import FeaturedPosts from "@/components/FeaturedPosts";
 import Categories from "@/components/Categories";
-import PostWidget from "@/components/PostWidget";
+import RelatedPost from "@/components/RelatedPost";
 import { fetchBlog } from "@/Services";
 import Link from "next/link";
 
@@ -47,7 +47,7 @@ const Blog = async () => {
           </div>
           <div className="lg:col-span-4 col-span-1">
             <div className="md:hidden lg:block relative top-8">
-              <PostWidget />
+              <RelatedPost />
               <Categories />
             </div>
           </div>
