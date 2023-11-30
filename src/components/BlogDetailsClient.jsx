@@ -1,45 +1,108 @@
-'use client'
+"use client";
 
-import React, { useState } from "react"
-import Link from "next/link"
+import React, { useState } from "react";
+import Link from "next/link";
 import { BsFillPencilFill } from "react-icons/bs";
-import { AiFillDelete, AiFillLike, AiOutlineDislike} from "react-icons/ai";
+import { AiFillDelete, AiFillLike, AiOutlineDislike } from "react-icons/ai";
+import { useSession } from "next-auth/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+const BlogDetailsClient = ({ id, BlogDetail }) => {
+  const { data: session, status } = useSession();
+  const [isLiked, setIsLiked] = useState(true);
+  const [blogLikes, setBlogLikes] = useState(0);
 
-const BlogDetailsClient = ({id,BlogDetail}) => {
-    const [isLiked, setIsLIked] = useState(true)
-  const [blogLikes, setBlogLIkes] = useState(0)
+  const handleDelete = async () => {
+    try {
+      const confirmModal = confirm(
+        "Are you sure you want to delete your blog?"
+      );
 
+      if (confirmModal) {
+        const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
+          headers: {
+            Authorization: `Bearer ${session?.user?.accessToken}`,
+          },
+          method: "DELETE",
+        });
+        const data = await res.json();
+        toast.error(data.message);
+        if (res.ok) {
+          router.push("/");
+        }
+      }
+    } catch (error) {
+      toast.error("Error occured while logging");
+    }
+  };
 
-  const handleLike = () => {}
+  const handleLike = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/blog/${id}/likes`, {
+        headers: {
+          Authorization: `Bearer ${session?.user?.accessToken}`,
+        },
+        method: "PUT",
+      });
 
-
+      console.log(res);
+      if (res.ok) {
+        if (isLiked) {
+          setIsLiked((prev) => !prev);
+          setBlogLikes((prev) => prev + 1);
+        } else {
+          setIsLiked((prev) => !prev);
+          setBlogLikes((prev) => prev - 1);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
-      <div className='flex w-full justify-between m-3 px-4'>
-      <div className=''>
-                        Category:
-                        <span>{BlogDetail?.categories}</span>
-       </div>
-                    <div className='flex'>
-                        {blogLikes} {" "} {isLiked ? <AiFillLike size={20} onClick={handleLike} /> : <AiOutlineDislike  size={20} onClick={handleLike} />}
-                    </div>
-            {BlogDetail && (
-              <div className="flex gap-4">
-                <Link className="flex" href={`/blog/edit/${id}`}>
-                  Edit 
-                  <BsFillPencilFill />
-                </Link>
-                <button type="button" className="flex">
-                  Delete
-                  <AiFillDelete />
-                </button>
-              </div>
-            )}
+      <div className="flex w-full bg-slate-300 p-2 rounded-md dark:bg-white justify-between m-3 px-4">
+        <div className="">
+          Category: <span>{BlogDetail?.categories}</span>
+        </div>
+        <div className="flex items-center  cursor-pointer">
+          {blogLikes}{" "}
+          {isLiked ? (
+            <AiFillLike
+              size={20}
+              onClick={handleLike}
+              style={{ color: "blue" }}
+            />
+          ) : (
+            <AiOutlineDislike
+              size={20}
+              onClick={handleLike}
+              style={{ color: "blue" }}
+            />
+          )}
+        </div>
+        {BlogDetail && (
+          <div className="flex gap-4">
+            <Link className="flex items-center gap-1" href={`/blog/edit/${id}`}>
+              Edit
+              <BsFillPencilFill style={{ color: "blue" }} />
+            </Link>
+            <button
+              type="button"
+              className="flex gap-1 items-center"
+              onClick={handleDelete}
+            >
+              Delete
+              <AiFillDelete style={{ color: "red" }} />
+            </button>
           </div>
+        )}
+      </div>
+      <ToastContainer />
     </>
-  )
-}
+  );
+};
 
-export default BlogDetailsClient
+export default BlogDetailsClient;

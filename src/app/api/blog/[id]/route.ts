@@ -66,30 +66,32 @@ export async function DELETE(req: any, ctx: any) {
 
   const id = ctx.params.id;
 
-  const accessToken = req.headers.get("authorization");
+  const headersList = headers();
+  const accessToken = headersList.get("authorization");
   const token = accessToken.split(" ")[1];
 
-  const decodedToken = jwtVerify(token);
+  const decodedToken: any = jwtVerify(token);
+
 
   if (!accessToken || !decodedToken) {
     return new Response(
-      JSON.stringify({ error: "unauthorized (wrong or expired token)" }),
+      JSON.stringify({ message: "unauthorized (wrong or expired token)" }),
       { status: 403 }
     );
   }
 
   try {
-    const blog = await Blog.findById(id).populate("authorId");
-    if (blog?.authorId?._id.toString() !== decodedToken._id.toString()) {
+    const blog = await Blog.findById(id)
+    if (blog?.userId?._id.toString() !== decodedToken._id.toString()) {
       return new Response(
-        JSON.stringify({ msg: "Only author can delete his blog" }),
+        JSON.stringify({ message: "Only author can delete his blog" }),
         { status: 403 }
       );
     }
 
     await Blog.findByIdAndDelete(id);
 
-    return new Response(JSON.stringify({ msg: "Successfully deleted blog" }), {
+    return new Response(JSON.stringify({ message: "Successfully deleted blog" }), {
       status: 200,
     });
   } catch (error) {

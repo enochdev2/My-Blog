@@ -37,8 +37,8 @@ const BlogDetails = async ({ params }: any) => {
             </p>
           </div>
           
+          <div className="flex w-full ">
           <BlogDetailsClient id={BlogDetail._id} BlogDetail={BlogDetail} />
-          <div className="flex gap-4">
         </div>
         
           

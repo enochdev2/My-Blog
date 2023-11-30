@@ -8,7 +8,7 @@ import { useRef, useState, useEffect, ChangeEvent } from 'react';
 // } from 'firebase/storage';
 // import { app } from '../../firebase';
 import Link from "next/link"
-import {useSession} from 'next-auth/react'
+import {signOut, useSession} from 'next-auth/react'
 
 
 
@@ -139,9 +139,9 @@ export default function Profile() {
         />
         <img
           onClick={() => fileRef.current.click()}
-        //   src={formData.avatar || currentUser.avatar}
+          src={formData.avatar || session?.user?.avatar}
           alt='profile'
-          className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2'
+          className='rounded-full h-32 w-32 object-cover bg-slate-500 cursor-pointer self-center mt-2'
         />
         <p className='text-sm self-center'>
           {fileUploadError ? (
@@ -196,7 +196,7 @@ export default function Profile() {
           Delete account
         </span>
         <span 
-        // onClick={handleSignOut} 
+        onClick={()=>{signOut()}} 
         className='text-red-700 cursor-pointer'>
           Sign out
         </span>

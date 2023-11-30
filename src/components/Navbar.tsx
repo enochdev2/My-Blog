@@ -6,9 +6,13 @@ import { FaBars, FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import ThemeToggler from "./theme";
 
+
 import { BiSearchAlt } from "react-icons/bi";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const { data: session, status } = useSession();
+
   const [navMenu, setNavMenu] = useState<boolean>(false);
   const [sticky, setSticky] = useState<boolean>(false);
 
@@ -100,15 +104,15 @@ const Navbar = () => {
          
           
           <Link href="/profile">
-            {/* {currentUser ? (
+            {session?.user?.accessToken ? (
               <img
                 className='rounded-full h-7 w-7 object-cover'
-                src={currentUser.avatar}
+                src={session?.user?.avatar}
                 alt='profile'
               />
             ) : (
-              <li className=' text-slate-700 hover:underline'> Sign in</li>
-            )} */}
+              <Link href='/login' className=' text-slate-700 hover:underline'> Sign in</Link>
+            )}
           </Link>
           <li className="hidden sm:inline text-slate-700 hover:underline">
               <ThemeToggler />
