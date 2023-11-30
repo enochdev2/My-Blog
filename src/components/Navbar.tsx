@@ -59,10 +59,10 @@ const Navbar = () => {
 
   return (
     <header 
-    className={`top-0 left-0 z-40 flex w-full gap-3 items-center bg-[#7E909A] mb-10
+    className={` relative flex w-full gap-3 items-center bg-[#7E909A] mb-10
     ${
       sticky
-        ? "!fixed !z-[9999] !bg-[#7E909A] !bg-opacity-90 shadow-sticky backdrop:blur-sm !transition dark:!bg-primary dark:!bg-opacity-20"
+        ? "!fixed !z-[9999] !bg-[#7E909A]  shadow-sticky backdrop:blur-sm !transition dark:!bg-primary dark:!bg-opacity-20"
         : "absolute"
     }
     `}
