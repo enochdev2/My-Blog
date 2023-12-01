@@ -21,8 +21,8 @@ const BlogDetails = async ({ params }: any) => {
 
 
   return (
-    <main className="w-full  py-5">
-      <div className="px-3 w-[90%] m-auto grid place-items-center gap-3">
+    <main className="w-full grid grid-cols-4 py-5">
+      <div className="px-3 w-[90%] m-auto md:col-span-3  grid place-items-center gap-3">
         <div className="w-full">
           <div className="font-bold my-8 text-2xl">{BlogDetail?.title}</div>
           <div className="relative overflow-hidden w-[90%] h-[200px] bg-red-800 m-auto">
@@ -51,13 +51,13 @@ const BlogDetails = async ({ params }: any) => {
           <p className="py-3 px-5 text-lg text-justify">{BlogDetail?.desc.slice(370,700)}</p>
       </div>
       </div>
-      <div className="lg:col-span-4 col-span-1">
+      <div className="">
             <div className="md:hidden lg:block relative top-8">
-              <RelatedPost />
+              <RelatedPost category={BlogDetail?.categories} />
             </div>
           </div>
 
-      <div>
+      <div className="lg:col-span-4 col-span-1">
         <CommentsForm idx={idx} />
         <Comments id={params.id} />
         {/* console.log(id); */}

@@ -57,7 +57,7 @@ const BlogDetailsClient = ({ id, BlogDetail }) => {
         }
       }
     } catch (error) {
-      console.log(error);
+      toast.error("You must first Log in");
     }
   };
 
@@ -83,7 +83,7 @@ const BlogDetailsClient = ({ id, BlogDetail }) => {
             />
           )}
         </div>
-        {BlogDetail && (
+        {session?.user?.id === BlogDetail.userId && (
           <div className="flex gap-4">
             <Link className="flex items-center gap-1" href={`/blog/edit/${id}`}>
               Edit

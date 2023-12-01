@@ -27,21 +27,13 @@ const Navbar = () => {
       name: "BLOG",
       link: "/blog",
     },
+   
     {
       id: 3,
-      name: " SERVICE",
-      link: "/service",
-    },
-    {
-      id: 4,
       name: " ABOUT",
       link: "/about",
     },
-    {
-      id: 5,
-      name: " PROFILE",
-      link: "/profile",
-    },
+  
   ];
 
 
@@ -59,7 +51,7 @@ const Navbar = () => {
 
   return (
     <header 
-    className={` relative flex w-full gap-3 items-center bg-[#7E909A] mb-10
+    className={` relative flex w-full gap-3 items-center bg-[#7E909A] mb-0
     ${
       sticky
         ? "!fixed !z-[9999] !bg-[#7E909A]  shadow-sticky backdrop:blur-sm !transition dark:!bg-primary dark:!bg-opacity-20"
@@ -102,7 +94,9 @@ const Navbar = () => {
                 </Link>
               ))}
          
-          
+         <li className="hidden sm:inline text-slate-700 hover:underline">
+              <ThemeToggler />
+            </li>
           <Link href="/profile">
             {session?.user?.accessToken ? (
               <img
@@ -111,12 +105,10 @@ const Navbar = () => {
                 alt='profile'
               />
             ) : (
-              <Link href='/login' className=' text-slate-700 hover:underline'> Sign in</Link>
+              <Link href='/login' className='  hover:underline rounded-lg font-semibold px-3 py-2 text-white bg-red-300'> Sign in</Link>
             )}
           </Link>
-          <li className="hidden sm:inline text-slate-700 hover:underline">
-              <ThemeToggler />
-            </li>
+          
         </ul>
       </div>
     </header>

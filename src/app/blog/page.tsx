@@ -12,15 +12,15 @@ const Blog = async () => {
   const blogs: any = await fetchBlog();
 
   console.log(blogs);
-
+  const classNames = "dark:bg-teal-800 bg-white flex gap-4 flex-col shadow-lg rounded-lg p-8 pb-12 mb-8"
   return (
-    <main className="w-full p-4">
+    <main className="w-full pt-0 p-4">
       {/* <div className="px-3 w-[70%]  my-4 grid  md:grid-cols-2 place-items-center grid-cols-1 gap-4"></div>
       <div></div> */}
-     <div className="p-3 mt-12  m-auto border-b border-b-lime-700 text-xl text-center"> 
-     <Categories/>
+     <div className=" mt-0 w-full  m-auto border border-b-lime-700 text-xl text-center"> 
+     <Categories classNames={`"dark:bg-teal-800 flex justify-between  bg-white items-center w-full shadow-lg rounded-lg p-8 pb-2 mb-12"`}/>
      FeaturedPosts </div>
-      <div className="container mx-auto px-10 mt-4 mb-8">
+      <div className="container  mx-auto px-10 mt-4 mb-8">
         <FeaturedPosts />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 my-15">
           <div className="lg:col-span-8 col-span-1 my-15">
@@ -48,7 +48,7 @@ const Blog = async () => {
           <div className="lg:col-span-4 col-span-1">
             <div className="md:hidden lg:block relative top-8">
               <RelatedPost />
-              <Categories />
+              <Categories classNames={classNames}/>
             </div>
           </div>
         </div>
