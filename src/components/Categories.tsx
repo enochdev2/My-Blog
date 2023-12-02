@@ -14,39 +14,39 @@ const Categories = ({classNames}:any) => {
 
   return (
     <div className={`${classNames}`}>
-      <h3 className="text-xl mb-8 font-semibold border-b pb-4">Categories:</h3>
+      <h3 className="text-xl mb-0 font-semibold border-b pb-4">Categories:</h3>
 
       <Link href="/">
         <span
-          className={`cursor-pointer border-b p-3 m-3`}
+          className={`cursor-pointer mb-0 pb-0 border-b p-3  m-3`}
         >
           Finance
         </span>
       </Link>
       <Link href="/">
         <span
-        className={`cursor-pointer border-b p-3 m-3`}
+        className={`cursor-pointer border-b pb-0 p-3 m-3`}
         >
           Business
         </span>
       </Link>
       <Link href="/">
         <span
-         className={`cursor-pointer border-b p-3 m-3`}
+         className={`cursor-pointer mb-0 pb-0 border-b p-3 m-3`}
         >
           Leadership
         </span>
       </Link>
       <Link href="/">
         <span
-          className={`cursor-pointer border-b p-3 m-3`}
+          className={`cursor-pointer mb-0 pb-0 border-b p-3 m-3`}
         >
           Family
         </span>
       </Link>
       <Link href="/">
         <span
-         className={`cursor-pointer border-b p-3 m-3`}
+         className={`cursor-pointer mb-0 pb-0 border-b p-3 m-3`}
         >
           LifeStyle
         </span>

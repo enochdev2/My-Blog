@@ -22,13 +22,13 @@ const Comments = ({ id }: any) => {
   const {data: session} = useSession()
   const token = session?.user?.accessToken
 
-
+  
+  console.log(comments);
 
   useEffect(() => {
     const fetchComment = async () => {
       try {
-        
-        const res = await fetch(`http://localhost:3000/api/comment/${id}`);
+        const res = await fetch(`http://localhost:3000/api/comment/${id}`, {cache: "no-store"});
         const data = await res.json();
         setComments(data);
       } catch (error) {
@@ -62,7 +62,8 @@ const Comments = ({ id }: any) => {
 
   return (
     <>
-      {comments?.length > 0 && (
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, repellendus. Velit adipisci vel voluptas voluptates recusandae minus culpa similique! Magnam recusandae corrupti, laborum reiciendis, quos similique quisquam id officia, consequatur ratione minima accusantium a autem vero hic. Quam, sunt soluta?</p>
+      {comments.length && (
         <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
           <h3 className="text-xl mb-8 font-semibold border-b pb-4">
             {comments.length} Comments

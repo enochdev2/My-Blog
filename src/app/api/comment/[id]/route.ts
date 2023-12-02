@@ -14,14 +14,14 @@ export async function GET(req:Request, {params}:any){
 
     try {
         const comments = await Comment.find({blogId:id})
-        // const commentUser = await User.findone({id:comments.userId }) 
-        // console.log(commentUser);
+        const commentUser = await User.find({id:comments.userId }) 
+        console.log(commentUser);
         
 
-        // const {username, ...others} = commentUser._doc
+        const {username, ...others} = commentUser._doc
                 //  console.log(username);
                  
-        return new Response(JSON.stringify({comments}), {status: 200})
+        return new Response(JSON.stringify({comments, username}), {status: 200})
     } catch (error) {
         return new Response(JSON.stringify(null), {status: 500})
     }

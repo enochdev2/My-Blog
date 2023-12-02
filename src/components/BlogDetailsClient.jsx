@@ -63,7 +63,7 @@ const BlogDetailsClient = ({ id, BlogDetail }) => {
 
   return (
     <>
-      <div className="flex w-full bg-slate-300 p-2 rounded-md dark:bg-white justify-between m-3 px-4">
+      <div className="flex w-full bg-slate-300 p-2 rounded-md dark:bg-white justify-between mt-1 m-3 px-4">
         <div className="">
           Category: <span>{BlogDetail?.categories}</span>
         </div>

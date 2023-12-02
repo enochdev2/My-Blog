@@ -14,15 +14,13 @@ const CommentsForm = ({idx}:any) => {
   const [error, setError] = useState(false);
   // const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [commentText, setCommentText] = useState<String>('');
+  const [commentText, setCommentText] = useState<any>('');
   const router = useRouter()
 
   
   const handlePostSubmission = async () => {
    const blogId = idx;
     console.log(blogId);
- 
-
 
     const body = {
       userId: session?.user?._id,
@@ -48,6 +46,7 @@ const CommentsForm = ({idx}:any) => {
       <div className="grid grid-cols-1 gap-4 mb-4">
         <textarea 
         onChange={(e) => setCommentText(e.target.value)} 
+        value={commentText}
         className="p-4 outline-none w-full rounded-lg h-40 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" name="comment" placeholder="Comment" />
       </div>
     
