@@ -13,8 +13,6 @@ const ReletedPost = ({params}:any) => {
   
 // const id = params.id;
 
-console.log(relatedPosts);
-console.log(path);
 
 
   useEffect(() => {
