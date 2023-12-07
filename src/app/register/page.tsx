@@ -11,17 +11,17 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-       if(username === '' || email === '' || password === ''){
-        toast.error("Fill all fields")
-        return
+    if (username === "" || email === "" || password === "") {
+      toast.error("Fill all fields");
+      return;
     }
 
-    if(password.length < 6){
-        toast.error("Password must be at least 6 characters")
-        return
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
     }
 
     try {
@@ -37,9 +37,9 @@ const Register = () => {
       if (res.ok) {
         toast.success("Successfully registered the user");
         setTimeout(() => {
-            signIn()
-        }, 1500)
-        return
+          signIn();
+        }, 1500);
+        return;
       } else {
         toast.error("Error occured while registering");
         return;

@@ -5,15 +5,24 @@ import Link from "next/link"
 import { useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useSession } from "next-auth/react";
 
 import { signIn } from 'next-auth/react'
+import Image from 'next/image'
 
 
 const LogIn = () => {
+  const { data: session, status } = useSession();
+
+  
   const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const router = useRouter()
 
+
+    if(session){
+      router.push('/')
+    }
     const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
       e.preventDefault()
 
@@ -54,8 +63,20 @@ const LogIn = () => {
         <label htmlFor="password" className="my-2 text-lg">Password</label>
         <input type={`password`} name='password' id="password" className='border p-3 rounded-lg' onChange={(e) => setPassword(e.target.value)}  />
       </div>
-      <button type="submit" className=" text-white bg-blue-900 w-full m-auto rounded-md py-1 px-2 " >Login</button>
-      <button  className=" my-2 text-white bg-blue-900 w-full m-auto rounded-md py-1 px-2 " >Google</button>
+      <button type="submit" disabled={status === "loading"} className=" text-white bg-blue-900 w-full m-auto mt-2 rounded-md py-2 px-2 text-lg font-bold " >Login</button>
+
+     
+      <div className="my-2 text-center text-gray-500">
+          or login with provider
+        </div>
+
+        <button type="button" onClick={() => signIn('google', {callbackUrl: '/'})}
+                className="flex gap-4 justify-center w-full m-auto rounded-md py-2 px-2 text-lg font-semibold bg-slate-500 ">
+          <Image src={'/google.png'} alt={'googleLogin'} width={24} height={24} />
+          Login with google
+        </button>
+
+      {/* <button type="button" className=" my-2 text-white bg-blue-900 w-full m-auto rounded-md py-1 px-2 " >Google</button> */}
       </form>
       <h3>Don't have an account? <Link href="/register">Register Here</Link></h3>
       <ToastContainer />

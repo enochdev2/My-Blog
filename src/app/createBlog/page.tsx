@@ -6,10 +6,30 @@ import React, { FormEvent, useState } from "react";
 import { AiOutlineFileImage } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
+
 
 interface Image {
   setImageUrl: (value: React.SetStateAction<string>) => void;
 }
+
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [
+      { list: 'ordered' },
+      { list: 'bullet' },
+      { indent: '-1' },
+      { indent: '+1' },
+    ],
+    ['link', 'image'],
+    ['clean'],
+  ],
+};
+
+
 
 const Create_post = () => {
   const CLOUD_NAME = "dg9ikhw52";
@@ -127,12 +147,20 @@ const Create_post = () => {
             <label htmlFor="desc" className="font-bold text-lg ">
               Description
             </label>
-            <textarea 
+            {/* <Editor value={desc} onChange={setDesc} /> */}
+            <div className="content">
+    <ReactQuill
+      value={desc}
+      theme={'snow'}
+      onChange={setDesc}
+      modules={modules} />
+    </div>
+            {/* <textarea 
             name="desc"
             id="desc"
         onChange={(e) => setDesc(e.target.value)}
         value={desc}
-        className="p-4 outline-none w-full rounded-lg h-40 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" placeholder="Description" />
+        className="p-4 outline-none w-full rounded-lg h-40 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" placeholder="Description" /> */}
           </div>
 
           <div>
