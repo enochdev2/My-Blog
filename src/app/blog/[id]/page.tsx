@@ -61,7 +61,7 @@ const BlogDetails = async ({ params }: any) => {
             </div>
           </div>
 
-      <div className="lg:col-span-4 col-span-1">
+      <div className="sm:col-span-4 col-span-1">
         <CommentsForm idx={idx} />
         <Comments id={params.id} />
         {/* console.log(id); */}

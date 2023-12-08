@@ -11,7 +11,7 @@ export async function GET(req: Request, { params }: any) {
   // blog id !!
 
   try {
-    const comments = await Comment.find({ blogId: id });
+    const comments = await Comment.find({ blogId: id }).populate("userId");
     
     // console.log(comments);
 

@@ -24,7 +24,8 @@ export async function POST(req:Request) {
     const body = await req.json()
     
     
-    const newComment = new Comment(body)
+    let newComment = new Comment(body)
+    newComment = await newComment.populate('userId')
     
     try {
         await newComment.save()

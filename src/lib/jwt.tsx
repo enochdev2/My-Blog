@@ -6,7 +6,7 @@ export const jwtSignIn = async (id:string) => {
   return token;
 };
 
-export const jwtVerify = (token: string) => {
+export const jwtVerify = (token: any) => {
   try {
     const secret = process.env.JWT_SECRET as string;
     const decoded = jwt.verify(token, secret);
