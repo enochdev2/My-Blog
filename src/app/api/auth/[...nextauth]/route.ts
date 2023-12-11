@@ -1,30 +1,22 @@
-import NextAuth from "next-auth/next";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import clientPromise from "@/lib/mongoClients";
 import User from "@/models/User";
 import bcrypt from "bcrypt"
 import db from "@/lib/db";
 import { jwtSignIn } from "@/lib/jwt";
 // import { types } from "util";
 
-// interface Credentials{
-//     username: string,
-//     password: string | number,
-// }
 
-const handler =  NextAuth({
+export const authOptions: AuthOptions =  {
+    adapter: MongoDBAdapter(clientPromise),
     providers: [
-        // GoogleProvider({
-        //     clientId: process.env.GOOGLE_ID as string,
-        //     clientSecret: process.env.GOOGLE_SECRET as string,
-        //     authorization: {
-        //       params: {
-        //         prompt: "consent",
-        //         access_type: "offline",
-        //         response_type: "code"
-        //       }
-        //     }
-        //   }),
+        GoogleProvider({
+            clientId: process.env.CLIENT_ID as string,
+            clientSecret: process.env.CLIENT_SECRET as string,
+          }),
         CredentialsProvider({
             type: 'credentials',
             credentials: { },
@@ -65,7 +57,7 @@ const handler =  NextAuth({
         signIn: "/login"
     },
     callbacks: {
-        async jwt({token, user}){
+        async jwt({token, user}:{token:any,user:any}){
             if(user){
                 token.accessToken = user.accessToken 
                 token._id = user._id
@@ -73,7 +65,7 @@ const handler =  NextAuth({
 
             return token
         },
-        async session({session, token}){
+        async session({session, token}:{session:any,token:any}){
             if(token){
                 session.user._id = token._id
                 session.user.accessToken = token.accessToken
@@ -86,6 +78,9 @@ const handler =  NextAuth({
     session: {
         strategy: "jwt",
     },
-})
+}
+
+
+const handler = NextAuth(authOptions)
 
 export {handler as GET, handler as POST}

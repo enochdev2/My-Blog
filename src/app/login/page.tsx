@@ -70,11 +70,12 @@ const LogIn = () => {
           or login with provider
         </div>
 
-        <button type="button" onClick={() => signIn('google', {callbackUrl: '/'})}
+        <button type="button" onClick={() => signIn('google')}
                 className="flex gap-4 justify-center w-full m-auto rounded-md py-2 px-2 text-lg font-semibold bg-slate-500 ">
           <Image src={'/google.png'} alt={'googleLogin'} width={24} height={24} />
           Login with google
         </button>
+
 
       {/* <button type="button" className=" my-2 text-white bg-blue-900 w-full m-auto rounded-md py-1 px-2 " >Google</button> */}
       </form>

@@ -11,7 +11,8 @@ import { BiSearchAlt } from "react-icons/bi";
 import { useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession() as {data:any, status:any}
+console.log(session);
 
   const [navMenu, setNavMenu] = useState<boolean>(false);
   const [sticky, setSticky] = useState<boolean>(false);
@@ -98,10 +99,10 @@ const Navbar = () => {
               <ThemeToggler />
             </li>
           <Link href="/profile">
-            {session?.user?.accessToken ? (
+            {session?.user?.accessToken || session?.user ? (
               <img
                 className='rounded-full h-7 w-7 object-cover'
-                src={session?.user?.avatar}
+                src={session?.user?.avatar || session?.user?.image}
                 alt='profile'
               />
             ) : (

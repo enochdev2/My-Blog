@@ -10,9 +10,9 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 //     commentText: string,
 // }
 const CommentsForm = ({idx}:any) => {
-  const {data:session, status} = useSession()
+  const {data:session, status} = useSession() as {data:any, status:any}
   const [error, setError] = useState(false);
-  // const [localStorage, setLocalStorage] = useState(null);
+ 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [commentText, setCommentText] = useState<any>('');
   const router = useRouter()

@@ -16,7 +16,7 @@ interface Image {
 
 const modules = {
   toolbar: [
-    [{ header: [1, 2, false] }],
+    [{ header: [1, 2, 3, false] }],
     ['bold', 'italic', 'underline', 'strike', 'blockquote'],
     [
       { list: 'ordered' },
@@ -37,10 +37,10 @@ const Create_post = () => {
 
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [imageUrls, setImageUrl] = useState({});
+  const [imageUrls, setImageUrl] = useState<any>({});
   const [categories, setCategories] = useState("");
 
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession() as {data: any, status:any};
   const router = useRouter();
 
   if (status === "loading") {

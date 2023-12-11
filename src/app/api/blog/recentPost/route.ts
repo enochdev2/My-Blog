@@ -7,14 +7,9 @@ export async function GET(req:Request) {
   try {
     // await connectDB();
     await db.connect()
-    const url = new URL(req.url);
-    const searchTerm = new URLSearchParams('category');
-    console.log(searchTerm);
-    console.log(url);
-    
     
 
-    const data = await Blog.find({Category:searchTerm}).sort({ createdAt: -1}).limit(6)
+    const data = await Blog.find().sort({ createdAt: -1}).limit(6)
     return new Response(JSON.stringify(data), { status: 201 });
   } catch (error: any) {
     console.log(error.message);

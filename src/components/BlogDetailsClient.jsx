@@ -13,6 +13,9 @@ const BlogDetailsClient = ({ id, BlogDetail }) => {
   const [isLiked, setIsLiked] = useState(true);
   const [blogLikes, setBlogLikes] = useState(0);
 
+  console.log(session?.user?.id);
+  console.log(BlogDetail.userId);
+
   const handleDelete = async () => {
     try {
       const confirmModal = confirm(

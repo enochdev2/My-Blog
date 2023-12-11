@@ -11,7 +11,7 @@ import Link from "next/link";
 const Blog = async () => {
   const blogs: any = await fetchBlog();
 
-  console.log(blogs);
+  
   const classNames = "dark:bg-teal-800 bg-white flex gap-4 flex-col shadow-lg rounded-lg p-8 pb-12 mb-8"
   
   
@@ -38,7 +38,7 @@ const Blog = async () => {
                     />
                   </div>
                   <h2 className="font-bold my-2 text-xl">{blog.title}
-                  {blog.id}</h2>
+                  </h2>
                   <p>{`${blog.desc}`.substring(1, 200)}...
                   <Link href={`blog/${blog._id}`} className="">
                   <button type="button" className="py-1 px-3 ml-5 text-white bg-cyan-700 rounded-md hover:bg-teal-600 ">Read More</button>
