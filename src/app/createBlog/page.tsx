@@ -174,7 +174,7 @@ const Create_post = () => {
               name="image"
               id="image"
               className={!imageUrls ? "hidden" : "block"}
-              onChange={(e) => setImageUrl(e.target.files[0])}
+              onChange={(e:any) => setImageUrl(e.target.files[0])}
               accept="image/*"
             />
           </div>
