@@ -99,8 +99,10 @@ const Navbar = () => {
             </li>
           <Link href="/profile">
             {session?.user?.accessToken || session?.user ? (
-              <img
+              <Image
                 className='rounded-full h-7 w-7 object-cover'
+                width={28}
+                height={28}
                 src={session?.user?.avatar || session?.user?.image}
                 alt='profile'
               />

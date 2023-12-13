@@ -103,7 +103,7 @@ const Register = () => {
         </button>
       </form>
       <h3>
-        Don't have an account? <Link href="/login">Login Here</Link>
+        Don&apos;t have an account? <Link href="/login">Login Here</Link>
       </h3>
       <ToastContainer />
     </div>

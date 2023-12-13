@@ -79,7 +79,7 @@ const LogIn = () => {
 
       {/* <button type="button" className=" my-2 text-white bg-blue-900 w-full m-auto rounded-md py-1 px-2 " >Google</button> */}
       </form>
-      <h3>Don't have an account? <Link href="/register">Register Here</Link></h3>
+      <h3>Don&apos;t have an account? <Link href="/register">Register Here</Link></h3>
       <ToastContainer />
     </div>
   )

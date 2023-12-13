@@ -57,7 +57,7 @@ useEffect(() => {
       setImageUrl(blog.imageUrl)
   }
   fetchBlog()
-}, [])
+}, [params.id])
 
 console.log(imageUrls);
 
