@@ -78,10 +78,10 @@ const Navbar = () => {
         </form>
         <ul className="flex gap-4 mx-2">
             {item.map((items: NavBarItem, id: number) => (
-              <li>
+              <li key={id}>
               <Link
                 href={items.link}
-                key={id}
+                
                 className="hidden sm:inline text-slate-700  rounded-lg bg-[#A5D8DD] px-2 py-1"
               >
                 {items.name}
