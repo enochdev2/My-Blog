@@ -159,7 +159,7 @@ export default function ProfileDetail({session}:{session:any}) {
   return (
     <div className="  p-3 max-w-screen-lg h-screen mx-auto">
       <input
-        onChange={(e) => setFile(e.target.files[0])}
+        onChange={(e:any) => setFile(e.target.files[0])}
         type="file"
         ref={fileRef}
         hidden
