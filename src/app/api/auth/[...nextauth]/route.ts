@@ -2,11 +2,11 @@ import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import clientPromise from "@/lib/mongoClients";
 import User from "@/models/User";
 import bcrypt from "bcrypt"
 import db from "@/lib/db";
 import { jwtSignIn } from "@/lib/jwt";
+import clientPromise from "@/lib/mongoClients";
 // import { types } from "util";
 
 
