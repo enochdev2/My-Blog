@@ -6,12 +6,11 @@ import { FaBars, FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import ThemeToggler from "./theme";
 
-
 import { BiSearchAlt } from "react-icons/bi";
 import { useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const { data: session, status } = useSession() as {data:any, status:any}
+  const { data: session, status } = useSession() as { data: any; status: any };
 
   const [navMenu, setNavMenu] = useState<boolean>(false);
   const [sticky, setSticky] = useState<boolean>(false);
@@ -27,38 +26,33 @@ const Navbar = () => {
       name: "BLOG",
       link: "/blog",
     },
-   
+
     {
       id: 3,
       name: " ABOUT",
       link: "/about",
     },
-  
   ];
-
 
   function handleStickyNavbar() {
     if (window.scrollY >= 80) setSticky(true);
     else setSticky(false);
+  }
 
-    }
-
-    useEffect(() => {
-      window.addEventListener("scroll", handleStickyNavbar);
-    });
-
-
+  useEffect(() => {
+    window.addEventListener("scroll", handleStickyNavbar);
+  });
 
   return (
-    <header 
-    className={` relative flex w-full gap-3 items-center bg-[#7E909A] mb-0
+    <header
+      className={` relative flex w-full gap-3 items-center bg-[#7E909A] mb-0
     ${
       sticky
         ? "!fixed !z-[9999] !bg-[#7E909A]  shadow-sticky backdrop:blur-sm !transition dark:!bg-primary dark:!bg-opacity-20"
         : "absolute"
     }
     `}
-    // className="bg-slate-200 shadow-md"
+      // className="bg-slate-200 shadow-md"
     >
       <div className="flex justify-between gap-5 items-center w-full mx-auto p-3 ">
         <Link href="/">
@@ -82,35 +76,44 @@ const Navbar = () => {
             <FaSearch className="text-slate-600" />
           </button>
         </form>
-        <ul className="flex gap-4 mx-2">         
-            
-              {item.map((items: NavBarItem, id: number) => (
-                <Link 
-                  href={items.link}
-                  key={id}
-                  className="hidden sm:inline text-slate-700  rounded-lg bg-[#A5D8DD] px-2 py-1"
-                >
-                  {items.name}
-                </Link>
-              ))}
-         
-         <li className="hidden sm:inline text-slate-700 hover:underline">
-              <ThemeToggler />
-            </li>
+        <ul className="flex gap-4 mx-2">
+            {item.map((items: NavBarItem, id: number) => (
+              <li>
+              <Link
+                href={items.link}
+                key={id}
+                className="hidden sm:inline text-slate-700  rounded-lg bg-[#A5D8DD] px-2 py-1"
+              >
+                {items.name}
+              </Link>
+                </li>
+            ))}
+
+          <li className="hidden sm:inline text-slate-700 hover:underline">
+            <ThemeToggler />
+          </li>
+          <li>
+
           <Link href="/profile">
             {session?.user?.accessToken || session?.user ? (
               <Image
-                className='rounded-full h-7 w-7 object-cover'
-                width={28}
-                height={28}
-                src={session?.user?.avatar || session?.user?.image}
-                alt='profile'
+              className="rounded-full h-7 w-7 object-cover"
+              width={28}
+              height={28}
+              src={session?.user?.avatar || session?.user?.image}
+              alt="profile"
               />
-            ) : (
-              <Link href='/login' className='  hover:underline rounded-lg font-semibold px-3 py-2 text-white bg-red-300'> Sign in</Link>
+              ) : (
+                <Link
+                href="/login"
+                className="  hover:underline rounded-lg font-semibold px-3 py-2 text-white bg-red-300"
+              >
+                {" "}
+                Sign in
+              </Link>
             )}
           </Link>
-          
+            </li>
         </ul>
       </div>
     </header>
