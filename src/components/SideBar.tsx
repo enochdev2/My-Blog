@@ -34,7 +34,7 @@ const SideBar = () => {
     <div>
         { 
         openSideBar &&
-      <div className='sm:hidden flex flex-col justify-between items-center  gap-5'>  
+      <div className='sm:hidden flex flex-col absolute w-screen h-screen justify-between items-center  gap-5'>  
             {item.map((items:NavBarItem, id:number)=>(
 
             <Link href={items.link} key={id} className="py-2 px-4 bg-slate-400 rounded-xl hover:bg-white">
