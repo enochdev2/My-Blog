@@ -9,8 +9,7 @@ import { NextResponse } from "next/server";
  export async function POST(req:any) {
      
      const {username, password, email} = await req.json();
-    //  await connectDB()
-    //  console.log(connectDB);
+   
      
     await db.connect()
     
@@ -20,7 +19,6 @@ import { NextResponse } from "next/server";
      if(NewUser){ 
             return new NextResponse("User already Exist!", { status: 400});
          }
-        console.log(NewUser);
         
          const hashPassword = await bcrypt.hash(password, 10);
      
@@ -32,7 +30,6 @@ import { NextResponse } from "next/server";
 
      try {
     await UserInfo.save();
-    // console.log(user);
     
 
     return new NextResponse(JSON.stringify( UserInfo), {status: 201})

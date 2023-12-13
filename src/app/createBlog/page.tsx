@@ -63,7 +63,6 @@ const Create_post = () => {
       toast.error("All fields are required");
       return;
     }
-    console.log(title);
 
     try {
       const imageUrl = await uploadImage();

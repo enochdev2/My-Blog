@@ -53,7 +53,6 @@ export async function PUT(req: any, { params }: any) {
       { $set: { ...body } },
       { new: true }
     );
-    console.log(updatedBlog);
 
     return new Response(JSON.stringify(updatedBlog), { status: 201 });
   } catch (error) {

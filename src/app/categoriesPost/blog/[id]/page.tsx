@@ -12,7 +12,6 @@ import Categories from "@/components/Categories";
 const BlogDetails = async ({ params }: any) => {
   const BlogDetail = await fetchSingleBlog(params.id);
   const idx = params.id as string;
-  
 
   const handleLike = () => {};
 
@@ -25,7 +24,7 @@ const BlogDetails = async ({ params }: any) => {
       </div>
 
       <div className="px-3 w-[90%] m-auto md:col-span-3  grid place-items-center gap-3">
-        <div className="w-full">
+        <div className="w-full bg-slate-200 rounded-lg p-4 ">
           <div className="font-bold my-8 text-2xl">{BlogDetail?.title}</div>
           <div className="relative overflow-hidden w-[90%] h-[200px] bg-red-800 m-auto">
             <Image src={BlogDetail?.imageUrl} fill alt="blog" className="" />
@@ -58,11 +57,11 @@ const BlogDetails = async ({ params }: any) => {
           />
         </div>
       </div>
-      <div className="">
-        <div className="md:hidden lg:block relative top-8">
+      {/* // <div className="">
+       // <div className="md:hidden lg:block relative top-8">
           <RelatedPost categories={BlogDetail?.categories} />
-        </div>
-      </div>
+      //  </div>
+    //  </div> */}
 
       <div className="sm:col-span-4 col-span-1">
         <CommentsForm idx={idx} />

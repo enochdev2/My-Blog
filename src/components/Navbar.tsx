@@ -12,7 +12,6 @@ import { useSession } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session, status } = useSession() as {data:any, status:any}
-console.log(session);
 
   const [navMenu, setNavMenu] = useState<boolean>(false);
   const [sticky, setSticky] = useState<boolean>(false);

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { fetchBlog } from "@/Services";
+import { categories } from "@/utils";
 
 const Categories = ({classNames}:any) => {
   const [categorie, setCategories] = useState([]);
@@ -16,50 +17,22 @@ const Categories = ({classNames}:any) => {
     <div className={`${classNames}`}>
       <h3 className="text-xl mb-0 font-semibold border-b pb-4">Categories:</h3>
 
-      <Link href="/">
+      {/* <Link href="/">
         <span
           className={`cursor-pointer mb-0 pb-0 border-b p-3  m-3`}
         >
           Finance
         </span>
       </Link>
-      <Link href="/">
-        <span
-        className={`cursor-pointer border-b pb-0 p-3 m-3`}
-        >
-          Business
-        </span>
-      </Link>
-      <Link href="/">
-        <span
-         className={`cursor-pointer mb-0 pb-0 border-b p-3 m-3`}
-        >
-          Leadership
-        </span>
-      </Link>
-      <Link href="/">
-        <span
-          className={`cursor-pointer mb-0 pb-0 border-b p-3 m-3`}
-        >
-          Family
-        </span>
-      </Link>
-      <Link href="/">
-        <span
-         className={`cursor-pointer mb-0 pb-0 border-b p-3 m-3`}
-        >
-          LifeStyle
-        </span>
-      </Link>
+       */}
 
-      {/* {categorie.map((category, index) => (
-        <Link key={index} href='/'
-        >
+      {categories.map((category, index) => (
+        <Link key={index} href={`/categoriesPost/${category.id}`}>
           <span className={`cursor-pointer block ${(index === categorie.length - 1) ? 'border-b-0' : 'border-b'} pb-3 mb-3`}>
-            {category.categories}
+            {category.label}
             </span>
         </Link>
-      ))} */}
+      ))}
     </div>
   );
 };

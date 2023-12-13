@@ -13,8 +13,6 @@ const BlogDetailsClient = ({ id, BlogDetail }) => {
   const [isLiked, setIsLiked] = useState(true);
   const [blogLikes, setBlogLikes] = useState(0);
 
-  console.log(session?.user?.id);
-  console.log(BlogDetail.userId);
 
   const handleDelete = async () => {
     try {
@@ -49,7 +47,6 @@ const BlogDetailsClient = ({ id, BlogDetail }) => {
         method: "PUT",
       });
 
-      console.log(res);
       if (res.ok) {
         if (isLiked) {
           setIsLiked((prev) => !prev);

@@ -34,7 +34,19 @@ export const fetchRecentPost = async () => {
 
 export const fetchRelatedPost = async (categories:string) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/blog/relatedPost?${categories}`, { cache: 'no-store' }) 
+      const res = await fetch(`http://localhost:3000/api/blog/relatedPost?categories=${categories}`, { cache: 'no-store' }) 
+      const data = await res.json();
+      return data
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
+
+export const fetchCategoriesPost = async (categories:string) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/blog/categories?categories=${categories}`, { cache: 'no-store' }) 
       const data = await res.json();
       return data
     } catch (error) {
@@ -50,9 +62,7 @@ export const fetchRelatedPost = async (categories:string) => {
 //       const res = await fetch(`http://localhost:3000/api/blog/relatedPost?${categories}`, { cache: 'no-store' }) 
 //       const data = await res.json();
 //       setRelatedPosts(data);
-//       console.log('relatedPost');
 //     } catch (error) {
-//       console.log(error);
       
 //     }
 //   }

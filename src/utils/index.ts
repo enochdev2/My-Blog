@@ -1,4 +1,4 @@
-import { FormControlItem, MenuItem, Option } from "./types";
+import { Categories, FormControlItem, MenuItem, Option } from "./types";
 
 export const menuItems: MenuItem[] = [
   {
@@ -52,3 +52,26 @@ export const footerLinks = [
     ],
   },
 ];
+
+export const categories: Categories[] = [
+  {
+    id: "Finance",
+    label: "Finance",
+  },
+  {
+    id: "Business",
+    label: "Business",
+  },
+  {
+    id: "Family",
+    label: "Family",
+  },
+  {
+    id: "Technology",
+    label: "Technology",
+  },
+  {
+    id: "Lifestyle",   
+    label: "Lifestyle",
+  }
+]

@@ -11,7 +11,6 @@ export async function PUT(req:Request, { params }: any) {
     const accessToken = headersList.get("authorization");
     const token = accessToken.split(" ")[1];
 
-    console.log(token)
 
     const decodedToken: any = jwtVerify(token);
 

@@ -2,14 +2,35 @@
 
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import React,{FormEvent, useEffect, useState} from 'react'
+import React,{ChangeEvent, FormEvent, InputHTMLAttributes, useEffect, useState} from 'react'
 import { AiOutlineFileImage } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
+
 
 interface Image {
   setImageUrl: (value: React.SetStateAction<string>) => void
 }
+
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, 3, false] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [
+      { list: 'ordered' },
+      { list: 'bullet' },
+      { indent: '-1' },
+      { indent: '+1' },
+    ],
+    ['link', 'image'],
+    ['clean'],
+  ],
+};
+
+
+
 
 const EditPost = ({params}:any) => {
   const CLOUD_NAME = 'dg9ikhw52'
@@ -17,11 +38,11 @@ const EditPost = ({params}:any) => {
 
 const [title, setTitle] = useState('')
 const [desc, setDesc] = useState('')
-const [imageUrls, setImageUrl] = useState({})
+const [imageUrls, setImageUrl] = useState<any>({})
 const [categories, setCategories] = useState('')
 
 
-const { data: session, status } = useSession()
+const { data: session, status } = useSession() as {data:any, status:any}
 const router = useRouter()
 
 
@@ -124,8 +145,8 @@ const uploadImage = async () => {
 }
 
   return (
-    <section className='w-screen h-screen pt-10 bg-slate-200 '>
-      <div className='w-11/12 m-auto  bg-slate-400 h-fit  py-10 px-10'>
+    <section className='w-screen min-h-screen pt-10 bg-slate-100 '>
+      <div className='w-11/12 m-auto  bg-slate-300 rounded-lg h-fit  py-10 px-10'>
         <form onSubmit={handleSubmit} className='flex w-full flex-col justify-between gap-5 border-l-indigo-100'>
           <h3 className='font-bold text-3xl'>Edit post</h3>
           <div className='flex flex-col'>
@@ -136,11 +157,11 @@ const uploadImage = async () => {
           </div>
           <div className='flex flex-col'>
             <label htmlFor="desc" className='font-bold text-lg '>Description</label>
-            <textarea name="desc" id="desc" className='h-30 py-4 px-3'
-            value={desc}
-            onChange={(e)=> setDesc(e.target.value)}>
-
-            </textarea>
+            <ReactQuill
+      value={desc}
+      theme={'snow'}
+      onChange={setDesc}
+      modules={modules} />
           </div>
 
           <div>
@@ -151,7 +172,7 @@ const uploadImage = async () => {
              name="image" 
              id="image"  
              className={!imageUrls ?'hidden': "block"}
-            onChange={(e)=> setImageUrl(e.target.files[0])}
+            onChange={(e:ChangeEvent|any|InputHTMLAttributes<HTMLInputElement>)=> setImageUrl(e.target.files[0])}
             accept='image/*'
             />
             
@@ -164,7 +185,7 @@ const uploadImage = async () => {
             onChange={(e)=>  setCategories(e.target.value)}>
               <option value="all">All</option>
               <option value="Finance">Finance</option>
-              <option value="Leadership">Leadership</option>
+              <option value="Leadership">Technology</option>
               <option value="Family">Family</option>
               <option value="Business">Business</option>
               <option value="Lifestyle">Lifestyle</option>

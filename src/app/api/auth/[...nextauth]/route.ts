@@ -41,7 +41,6 @@ export const authOptions: AuthOptions =  {
                     const {password, ...currentUser} = user._doc
     
                     const accessToken = await jwtSignIn(currentUser)
-                    console.log("accessToken:", accessToken)
                     
                     return {
                         ...currentUser,

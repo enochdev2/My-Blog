@@ -17,16 +17,13 @@ interface Commentss {
   updatedAt?: Date;
 }
 const Comments = async ({ id }: any) => {
-  // const { data: session } = useSession();
-  // const token = session?.user?.accessToken;
+  
 
   const comments: any = await fetchComment(id);
-  // console.log(comments);
   // {commentSection.map((comment)=>(
 
   //   <p>{comment.text}</p>
   // ))}
-  // console.log(id);
 
   // const handleDeleteComment = async (id: string) => {
   //   try {

@@ -5,7 +5,6 @@ import  db from "@/lib/db";
 
 export async function GET(req:Request) {
   try {
-    // await connectDB();
     await db.connect()
     
 
@@ -23,7 +22,6 @@ export async function POST(req:any) {
  
  const headersList = headers();
  const  accessToken  = headersList.get("authorization");
-  // const accessToken = req.header.get("authorization")
   const token = accessToken.split(" ")[1]
 
   
@@ -36,10 +34,8 @@ export async function POST(req:any) {
   const body = await req.json()
   const NewBlog = new Blog(body)
   
-  console.log(NewBlog);
   try {
     await NewBlog.save();
-    // console.log(user);
 
         return new Response(JSON.stringify(NewBlog), { status: 201 })
     } catch (error:any) {

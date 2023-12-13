@@ -21,10 +21,10 @@ const BlogSchema = new mongoose.Schema({
         required: true, 
         enum : [
             "Finance",
-            "Leadership",
+            "Technology",
             "Family",
             "Business",
-            "Lifestyle"
+            "Lifestyle/Leadership"
         ],
         default: "Finance",
     },
