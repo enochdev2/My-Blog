@@ -52,7 +52,7 @@ const BlogDetails = async ({ params }: any) => {
           {/* <p className="py-3 px-5 text-lg 
           text-justify">{BlogDetail?.desc.slice(370,700)}</p> */}
           <div
-            className="py-3 px-5 text-lg 
+            className=" content py-3 px-5 text-lg 
           text-justify"
             dangerouslySetInnerHTML={{ __html: BlogDetail?.desc }}
           />

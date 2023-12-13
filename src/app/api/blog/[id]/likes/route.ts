@@ -8,7 +8,7 @@ export async function PUT(req:Request, { params }: any) {
 
     const id = params.id
     const headersList = headers();
-    const accessToken = headersList.get("authorization");
+    const accessToken:any = headersList.get("authorization");
     const token = accessToken.split(" ")[1];
 
 
