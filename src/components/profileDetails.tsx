@@ -167,7 +167,7 @@ export default function ProfileDetail({session}:{session:any}) {
       />
       <Image
         onClick={() => fileRef.current.click()}
-        src={file || imageUrls || session?.user?.image || session?.user?.avatar}
+        src={session?.user?.image || session?.user?.avatar}
         width={300}
         height={300}
         alt="profile"
