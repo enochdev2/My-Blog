@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { NavBarItem } from '../../interface'
 import Link from 'next/link'
+import { NavBarItem } from '@/utils/types'
 
 const SideBar = () => {
         const [openSideBar, setOpenSideBar] = useState<boolean>(true)
