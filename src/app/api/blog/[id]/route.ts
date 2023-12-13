@@ -28,7 +28,7 @@ export async function GET(req: any, ctx: any) {
 export async function PUT(req: any, { params }: any) {
   const { id } = params;
   const headersList = headers();
-  const accessToken = headersList.get("authorization");
+  const accessToken:any = headersList.get("authorization");
   const token = accessToken.split(" ")[1];
 
   const decodedToken: any = jwtVerify(token);
@@ -66,7 +66,7 @@ export async function DELETE(req: any, ctx: any) {
   const id = ctx.params.id;
 
   const headersList = headers();
-  const accessToken = headersList.get("authorization");
+  const accessToken:any = headersList.get("authorization");
   const token = accessToken.split(" ")[1];
 
   const decodedToken: any = jwtVerify(token);

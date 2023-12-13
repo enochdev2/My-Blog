@@ -32,7 +32,7 @@ export async function DELETE(req: Request, ctx: any) {
   console.log(id);
 
   const headersList = headers();
-  const accessToken = headersList.get("authorization");
+  const accessToken:any = headersList.get("authorization");
   const token = accessToken.split(" ")[1];
 
   const decodedToken: any = jwtVerify(token);

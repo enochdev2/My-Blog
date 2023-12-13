@@ -21,7 +21,7 @@ export async function POST(req:any) {
  console.log(db.connect);
  
  const headersList = headers();
- const  accessToken  = headersList.get("authorization");
+ const  accessToken:any  = headersList.get("authorization");
   const token = accessToken.split(" ")[1]
 
   
